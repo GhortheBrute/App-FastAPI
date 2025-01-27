@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "fastapiproject"
+name = "app-fastapi"
 version = "0.1.0"
 description = ""
 authors = ["GhortheBrute <143045110+GhortheBrute@users.noreply.github.com>"]
@@ -7,6 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+fastapi = {extras = ["standard"], version = "^0.115.7"}
+httpx = "==1.0.0b0"
 
 
 [build-system]
