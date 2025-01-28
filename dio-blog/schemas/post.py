@@ -1,9 +1,10 @@
-from datetime import datetime, UTC
+from datetime import datetime
 
 from pydantic import BaseModel
 
 
 class PostIn(BaseModel):
     title: str
-    data: datetime = datetime.now(UTC)
+    content: str
+    published_at: datetime | None = None
     published: bool = False

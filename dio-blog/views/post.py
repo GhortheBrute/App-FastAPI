@@ -1,8 +1,9 @@
-from datetime import datetime, UTC
+from datetime import datetime
 
 from pydantic import BaseModel
 
 
 class PostOut(BaseModel):
     title: str
-    data: datetime
+    content: str
+    published_at: datetime | None
