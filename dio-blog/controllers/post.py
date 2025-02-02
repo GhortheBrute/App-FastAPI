@@ -1,14 +1,11 @@
-from fastapi import Response, status, APIRouter
-from starlette.status import HTTP_204_NO_CONTENT
+from fastapi import status, APIRouter, Depends
 
-from database import database
-
-from models.post import posts
 from schemas.post import PostIn, PostUpdateIn
-from views.post import PostOut
 from services.post import PostService
+from views.post import PostOut
+from security import login_required
 
-router = APIRouter(prefix="/posts", tags=["posts"])
+router = APIRouter(prefix="/posts", tags=["posts"], dependencies=[Depends(login_required)])
 
 service = PostService()
 
@@ -32,6 +29,6 @@ async def update_post(post: PostUpdateIn, id: int):
     return await service.update(id=id, post=post)
 
 
-@router.delete("/{id}", status_code=HTTP_204_NO_CONTENT, response_model=None)
+@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT, response_model=None)
 async def delete_post(id: int):
     await service.delete(id)
