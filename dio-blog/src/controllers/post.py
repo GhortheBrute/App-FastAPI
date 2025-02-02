@@ -1,13 +1,13 @@
-from fastapi import status, APIRouter, Depends
+from fastapi import status, APIRouter
 
-from schemas.post import PostIn, PostUpdateIn
-from services.post import PostService
-from views.post import PostOut
-from security import login_required
+from src.schemas.post import PostIn, PostUpdateIn
+from src.services.post import PostService
+from src.views.post import PostOut
 
-router = APIRouter(prefix="/posts", tags=["posts"], dependencies=[Depends(login_required)])
+router = APIRouter(prefix="/posts", tags=["posts"])
 
 service = PostService()
+
 
 @router.get("/", response_model=list[PostOut])
 async def read_posts(published: bool, limit: int, skip: int = 0):
